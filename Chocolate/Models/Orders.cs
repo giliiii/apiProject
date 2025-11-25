@@ -1,0 +1,11 @@
+﻿namespace Chocolate.Models
+{
+    public class Orders
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public Users? User { get; set; }
+        public ICollection<Products>? ProductList { get; set; } = new List<Products>();
+
+    }
+}
