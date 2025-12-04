@@ -6,7 +6,7 @@ using Chocolate.DTO;
 
 namespace Chocolate.Repositories
 {
-    public class OrdersRepository
+    public class OrdersRepository : IOrdersRepository
     {
         ShopContext context = ShopContextFactory.CreateContext();
 
@@ -14,13 +14,13 @@ namespace Chocolate.Repositories
         {
             var order = context.Orders
                     .Include(x => x.ProductList)
-                   
+
                     .Select(a => new
                     {
                         a.Id,
                         a.UserId,
                         a.User,
-                        Category = a.ProductList.Where(p => p.IsDeleted!=true).Select(c => c.Name)
+                        Category = a.ProductList.Where(p => p.IsDeleted != true).Select(c => c.Name)
                     }).ToList();
 
 
@@ -33,7 +33,7 @@ namespace Chocolate.Repositories
             var order = context.Orders.Add(ord);
             context.SaveChanges();
             return ord;
-              
+
         }
     }
 }

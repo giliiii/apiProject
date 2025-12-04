@@ -3,7 +3,7 @@ using Chocolate.Repositories;
 
 namespace Chocolate.Services
 {
-    public class OrdersService
+    public class OrdersService : IOrdersService
     {
         private readonly OrdersRepository _repository = new();
         public dynamic GetOrdersWithProd()
@@ -11,7 +11,7 @@ namespace Chocolate.Services
             return _repository.GetOrdersWithProducts();
         }
 
-        public Orders  AddOrder(Orders ord)
+        public Orders AddOrder(Orders ord)
         {
             return _repository.AddOrder(ord);
         }

@@ -1,4 +1,5 @@
 ﻿using Chocolate.Models;
+using Chocolate.Repositories;
 using Chocolate.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -13,7 +14,11 @@ namespace Chocolate.Controllers
     public class OrdersController: ControllerBase
     
     {
-        private readonly OrdersService OrdersService = new();
+        private readonly IOrdersService OrdersService;
+        public OrdersController(IOrdersService ordersService)
+        {
+            OrdersService = ordersService;          
+        }
 
         [HttpGet]
         [Route("WithProducts")]

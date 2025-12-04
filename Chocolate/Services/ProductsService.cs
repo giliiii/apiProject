@@ -5,7 +5,7 @@ using Chocolate.DTO;
 
 namespace Chocolate.Services
 {
-    public class ProductsService
+    public class ProductsService : IProductsService
     {
         private readonly ProductsRepository _repository = new();
 

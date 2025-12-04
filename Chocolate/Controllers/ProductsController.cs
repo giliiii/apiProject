@@ -16,9 +16,15 @@ namespace Chocolate.Controllers
     public class ProductsController:ControllerBase
     {
 
-        private readonly ProductsRepository _repository = new();
+        private readonly IProductsRepository _repository ;
 
-        private readonly ProductsService productsService=new();
+        private readonly IProductsService productsService;
+
+        public ProductsController(IProductsService productService, IProductsRepository productRepository)
+        {
+            productsService = productService;
+            _repository = productRepository;
+        }
 
         public List<Products> productsList = new List<Products>()
         {

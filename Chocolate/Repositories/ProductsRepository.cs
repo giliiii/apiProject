@@ -10,7 +10,7 @@ using System.Data;
 namespace Chocolate.Repositories
 
 {
-    public class ProductsRepository
+    public class ProductsRepository : IProductsRepository
     {
         ShopContext context = ShopContextFactory.CreateContext();
 
@@ -99,8 +99,8 @@ namespace Chocolate.Repositories
 
         public List<Products> AddSumProducts(List<ProductsDto> products)
         {
-            List <Products> p= new();
-            for(int i=0;i<products.Count;i++)
+            List<Products> p = new();
+            for (int i = 0; i < products.Count; i++)
             {
                 Products tmp = new();
                 tmp.Name = products[i].Name;
@@ -145,16 +145,16 @@ namespace Chocolate.Repositories
         }
         public int tran()
         {
-              using var transaction = context.Database.BeginTransaction();
+            using var transaction = context.Database.BeginTransaction();
             try
-            { 
-                var output = new SqlParameter
             {
-                ParameterName = "@Id",
-                SqlDbType = System.Data.SqlDbType.Int,
-                Direction = System.Data.ParameterDirection.Output
-            };
-        
+                var output = new SqlParameter
+                {
+                    ParameterName = "@Id",
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Direction = System.Data.ParameterDirection.Output
+                };
+
                 // First procedure
                 var parameters = new[]
               {
@@ -191,7 +191,7 @@ namespace Chocolate.Repositories
             catch
             {
                 transaction.Rollback();
-                return(0);
+                return (0);
             }
 
         }
